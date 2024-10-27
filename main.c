@@ -73,11 +73,11 @@ int main(void)
 {
 	//SetOrClearBit((unsigned int*) PCC_PORTD, 30u, SET_BIT);
 	LEDConfig();
-	//SW3Config();
+	SW2Config();
 	
 	while(1)
 	{
-		LEDToggle();
-		//SW3Toggle();
+		//LEDToggle();
+		SW2Toggle();
 	}
 }

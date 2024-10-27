@@ -29,8 +29,8 @@ void SetOrClearMultiBit(unsigned int *address, unsigned char position, unsigned 
 void LEDConfig (void)
 {
 	SetOrClearBit((unsigned int*) PCC_PORTD, 30u, SET_BIT);
-	SetOrClearMultiBit((unsigned int*) PORT_PCR15, 8u, 1u, SET_BIT);
-	SetOrClearBit((unsigned int*) GPIOD_PDDR, 15u, SET_BIT); 
+	SetOrClearMultiBit((unsigned int*) PORTD_PCR15, 8u, 1u, SET_BIT); // Port D 15 gpio
+	SetOrClearBit((unsigned int*) GPIOD_PDDR, 15u, SET_BIT); // GPIO D pin 15 output
 }
 
 void delay(void)
@@ -46,19 +46,19 @@ void LEDToggle (void)
 	delay();    
 }
 
-void SW3Config (void)
+void SW2Config (void)
 {
 	SetOrClearBit((unsigned int*) PCC_PORTC, 30u, SET_BIT);
-	SetOrClearMultiBit((unsigned int*) PORT_PCR13, 8u, 1u, SET_BIT);
-	SetOrClearBit((unsigned int*) GPIOD_PDDR, 13u, CLEAR_BIT);
+	SetOrClearMultiBit((unsigned int*) PORTC_PCR12, 8u, 1u, SET_BIT); //enable Pin 12 gpio
+	SetOrClearBit((unsigned int*) GPIOD_PDDR, 12u, CLEAR_BIT); // GPIO Port D Pin 12  Input
 	
 	SetOrClearMultiBit((unsigned int*) GPIOD_PDOR, 15u, 1u, SET_BIT);
 	
 }
 
-void SW3Toggle (void)
+void SW2Toggle (void)
 {
-	unsigned int state = ((*(unsigned int*)GPIOC_PDIR) & (1 << 13));
+	unsigned int state = ((*(unsigned int*)GPIOC_PDIR) & (1 << 12)); // if input GPIO C Pin 12 is true
 	if (state)
 	{
 		SetOrClearBit((unsigned int*) GPIOD_PDOR, 15u, CLEAR_BIT); 
